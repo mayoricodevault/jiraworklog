@@ -6,4 +6,5 @@ node_modules/
 bower_components/
 .idea/
 npm-debug.log
+/app/components/work/enterWorklog.controller.js
 .DS_Store
