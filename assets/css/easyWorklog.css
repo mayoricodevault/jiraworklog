@@ -1,0 +1,180 @@
+/*  ------------------------------- General -------------------------------  */
+
+body {
+    padding-top: 65px;
+    background-color: #f5f5f5;
+    color: #444;
+}
+
+.red {
+    color: rgb(225, 0, 0);
+}
+
+.green {
+    color: #008000;
+}
+
+input[type=button]:focus {
+    outline: none;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.popover:focus {
+    outline: none;
+}
+
+.center {
+    text-align: center;
+    align-self: center;
+}
+
+/* -------------------------------- Buttons --------------------------------------  */
+
+.invisible_button {
+    border-radius: 5px;
+    background-color: transparent;
+    border: 0px solid #000000;
+    padding: 5px 15px;
+}
+
+.invisible_button:hover , .invisible_button:focus {
+    background-color: rgba(208, 208, 208, 0.74);
+}
+
+/*  ------------------------------- Navigation Bar -------------------------------  */
+
+.navbar {
+    background-color: #2578CF;
+    margin-bottom: 15px;
+}
+
+.nav li a {
+    color: #FFF !important;
+    background-color: #2578CF;
+    outline: none;
+}
+
+.dropdown-input {
+    margin-bottom: 10px !important;
+}
+
+.navbar-brand {
+    color: #FFF !important;
+    padding: 8px 8px !important;
+}
+
+.navbar-brand img {
+    max-height: 3.5rem;
+}
+
+#calendar {
+    position: absolute;
+    right: 65px;
+    top: 8px;
+    z-index: 999;
+    pointer-events: none !important;
+}
+
+/*  ------------------------------- Worklog Table -------------------------------  */
+
+.table_header {
+    flex: 1;
+    padding: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.table_cell {
+    flex: 1;
+    padding: 5px;
+}
+
+.small_size {
+    max-width: 60px;
+}
+
+.medium_size {
+    max-width: 100px;
+}
+
+.large_size {
+    max-width: 150px;
+}
+
+/* ------------------------------- Loading Modal --------------------------------- */
+
+.modal-loading-icon{
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.modal-body #errorsOnValidation{
+    margin: -15px -15px 10px -15px;
+    border-top: 0;
+    border-bottom-color: #ddd;
+}
+
+/* ------------------------------- Errors Div --------------------------------- */
+
+#close {
+    position: absolute;
+    cursor: pointer;
+    right: 15px;
+}
+
+#error_div {
+    padding: 5px 10px;
+    margin: 0 15px 10px 15px;
+}
+
+#error_div ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+/* ------------------------------- Summary Table --------------------------------- */
+
+.summary-table{
+    background-color: white;
+    max-width: 500px;
+    margin-left: 25px;
+}
+
+.summary-table thead th,
+.summary-table tbody td{
+    text-align: center;
+}
+
+/*---------------------- Autocomplete ----------------------------------*/
+
+.angucomplete-dropdown {
+    margin-top: 0px;
+    border-color: #ddd;
+    padding: 0;
+    overflow-y: auto;
+    overflow-x:hidden;
+    max-height: 200px;
+    width:400px;
+}
+
+.angucomplete-row {
+    padding:2px 20px 2px 10px;
+    margin:0px;
+    max-height:2em;
+    width: 400px;
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    color:#444;
+}
+
+/*---------------Autocomplete Row ------------------------------------*/
+
+.angucomplete-row a{
+    text-decoration: none;
+    color: #444;
+}

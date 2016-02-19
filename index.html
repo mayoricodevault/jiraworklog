@@ -1,0 +1,41 @@
+<!doctype html>
+<html ng-app="worklogApp">
+<head>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/angular-motion/dist/angular-motion.css">
+    <link rel="stylesheet" href="bower_components/bootstrap-additions/dist/bootstrap-additions.css">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/angular-hotkeys/build/hotkeys.css">
+    <link rel="stylesheet" href="app/shared/directives/angucomplete-alt/css/angucomplete-alt.css">
+    <link rel="stylesheet" href="assets/css/easyWorklog.css">
+</head>
+<body>
+    <div ng-view>
+    </div>
+
+    <script class="externalDependencies" src="bower_components/angular/angular.js"></script>
+    <script class="externalDependencies" src="bower_components/angular-route/angular-route.js"></script>
+    <script class="externalDependencies" src="bower_components/angular-animate/angular-animate.js"></script>
+    <script class="externalDependencies" src="bower_components/angular-strap/dist/angular-strap.js"></script>
+    <script class="externalDependencies" src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script class="externalDependencies" src="bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
+    <script class="externalDependencies" src="bower_components/pouchdb/dist/pouchdb.js"></script>
+    <script class="externalDependencies" src="bower_components/angular-pouchdb/angular-pouchdb.js"></script>
+    <script class="externalDependencies" src="bower_components/moment/moment.js"></script>
+    <script class="externalDependencies" src="bower_components/moment-range/dist/moment-range.js"></script>
+    <script class="externalDependencies" src="bower_components/lodash/lodash.js"></script>
+    <script class="externalDependencies" src="bower_components/angular-hotkeys/build/hotkeys.js"></script>
+
+    <script src="app/worklog.module.js"></script>
+    <script src="app/worklog.config.js"></script>
+    <script src="app/worklog.routes.js"></script>
+    <script src="app/components/work/enterWorklog.controller.js"></script>
+    <script src="app/shared/directives/angucomplete-alt/js/angucomplete-alt.js"></script>
+    <script src="app/shared/database/worklogDB.service.js"></script>
+    <script src="app/shared/ui.service.js"></script>
+    <script src="app/shared/translation.service.js"></script>
+    <script src="app/shared/interval.backup.service.js"></script>
+    <script src="app/shared/jira.service.js"></script>
+    <script src="app/shared/filters.js"></script>
+</body>
+</html>

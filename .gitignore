@@ -1,0 +1,8 @@
+/nwjc
+/nwjs.app
+/node_modules
+/bower_components
+node_modules/
+bower_components/
+.idea/
+npm-debug.log

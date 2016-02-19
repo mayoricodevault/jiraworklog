@@ -1,0 +1,132 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <img class="navbar-brand" src="assets/images/logo-mojix.png" alt="Mojix Mike Mayori">
+        </div>
+        <form class="navbar-form navbar-left" style="padding-top: 2px;">
+            <div class="form-group input-group">
+                <span class="input-group-btn">
+                    <button class="btn btn-default btn-sm" type="button" ng-click="enterWorklogCtrl.subtractDay()"><i
+                            class="fa fa-chevron-left"></i></button>
+                </span>
+                <span class="input-group-btn">
+                    <button class="btn btn-default btn-sm" type="button"
+                            style="border-right: transparent; border-radius: 0px;" ng-click="enterWorklogCtrl.addDay()">
+                        <i class="fa fa-chevron-right"></i></button>
+                </span>
+                <input type="text" placeholder="Date" data-date-format="dd/MM/yyyy"
+                       class="form-control input-sm" style="width: 150px;"
+                       ng-model="enterWorklogCtrl.date" name="date" bs-datepicker>
+                <i id="calendar" class="fa fa-calendar"></i></button>
+                <span class="input-group-btn">
+                    <button class="btn btn-default btn-sm" type="button" ng-click="enterWorklogCtrl.today()">
+                        Today
+                    </button>
+                </span>
+            </div>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a data-id="" data-placement="bottom" data-content="Login Window"
+                   data-template-url="app/components/work/partials/_login.html" data-auto-close="1" bs-popover>
+                    {{enterWorklogCtrl.logged ? enterWorklogCtrl.username : "Login"}}
+                    <span class="caret"></span>
+                </a>
+            <li>
+        </ul>
+    </div>
+</nav>
+<div id="error_div" class="alert alert-danger" role="alert" ng-show="enterWorklogCtrl.errors.length !== 0">
+    <button type="button" class="close" aria-label="Close" ng-click="enterWorklogCtrl.errors = []"><span
+            aria-hidden="true">&times;</span></button>
+    <ul>
+        <li ng-repeat="error in enterWorklogCtrl.errors track by $index">
+            <span class="fa fa-exclamation-triangle" style="margin-right: 5px;"></span>{{ error }}
+        </li>
+    </ul>
+</div>
+<form name="worklogForm" class="form" novalidate>
+    <div style="display: flex">
+        <div class="table_header small_size">Line</div>
+        <div class="table_header medium_size">Start Time</div>
+        <div class="table_header medium_size">End Time</div>
+        <div class="table_header">Description</div>
+        <div class="table_header large_size">Issue Key</div>
+        <div class="table_header large_size">Stored in JIRA</div>
+        <div class="table_header large_size"></div>
+    </div>
+    <div style="display: flex;" ng-repeat="worklog in enterWorklogCtrl.worklogs track by $index">
+        <div class="table_cell small_size center">
+            <span>#{{$index+1}}</span>
+        </div>
+        <div class="table_cell medium_size">
+            <input type="text" name="startTime-{{$index + 1}}" class="form-control" size="8" ng-model="worklog.startTime" bs-timepicker
+                   data-time-format="HH:mm"  ng-disabled="worklog.status === 'SENT'"  required>
+        </div>
+        <div class="table_cell medium_size">
+            <input type="text" name="endTime-{{$index + 1}}" class="form-control" size="8" ng-model="worklog.endTime" data-time-format="HH:mm"
+                   bs-timepicker ng-disabled="worklog.status === 'SENT'" round-display="'true'" required>
+        </div>
+        <div class="table_cell">
+            <input class="form-control" name="description-{{$index + 1}}" placeholder="Type a description" type="text" ng-model="worklog.description" ng-disabled="worklog.status === 'SENT'">
+        </div>
+        <div class="table_cell large_size" bs-tooltip data-trigger="hover"  data-title="{{worklog.issueDescription}}">
+                <angucomplete-alt id="issue-autocomplete-{{$index}}"
+                                  placeholder="Search issues"
+                                  pause="400"
+                                  disable-input="worklog.status === 'SENT'"
+                                  remote-api-handler="enterWorklogCtrl.getSuggestions"
+                                  title-field="key"
+                                  image-field="img"
+                                  initial-value="worklog.issueKey"
+                                  description-field="summary"
+                                  input-class="form-control form-control-small"
+                                  match-class="highlight"
+                                  text-no-results="No issues matched."
+                                  text-searching="Searching..."
+                                  minlength="1"
+                                  selected-object="enterWorklogCtrl.selectedObject"
+                                  input-changed="enterWorklogCtrl.inputChanged"
+                                  title-tag-field="summaryText"
+                                  remote-url-prefix="{{enterWorklogCtrl.jiraURL}}"
+                                  input-name="issueKey-{{$index+1}}"/>
+        </div>
+        <div class="table_cell large_size center" ng-class="{'red': (worklog.status !== 'NOT_SENT'), 'green': (worklog.status === 'SENT')}">
+            <span data-trigger="hover" data-title="{{worklog.status | extendedFriendlyText }}" bs-tooltip>{{ worklog.status | friendlyText }}</span>
+        </div>
+        <div class="table_cell large_size center">
+            <button type="button" class="invisible_button" style="float: left; margin-left: 10px;" ng-click="enterWorklogCtrl.confirmDelete($index);">
+                <i class="fa fa-minus-circle fa-lg red"></i>
+            </button>
+            <button type="button" class="invisible_button" style="margin-right: 15px;" ng-if="$last" ng-click="enterWorklogCtrl.addWorklog()">
+                <i class="fa fa-plus-circle fa-lg green"></i>
+            </button>
+        </div>
+    </div>
+    <hr>
+    <button type="button" class="pull-right btn btn-primary" style="margin-right: 30px; background-color: #2578CF;" ng-click="enterWorklogCtrl.sendToJIRA(worklogForm.$error)">Send to JIRA
+    </button>
+</form>
+<div>
+    <table class="table table-bordered summary-table">
+        <thead>
+            <tr>
+                <th colspan="2">Summary {{ enterWorklogCtrl.date | date:'dd/MM/yyyy' }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Total Worklog</th>
+                <td>{{ enterWorklogCtrl.getLoggedTime() | toHoursAndMinutes }}</td>
+            </tr>
+            <tr>
+                <th>Total Office</th>
+                <td>{{ enterWorklogCtrl.getOfficeTime() | toHoursAndMinutes }}</td>
+            </tr>
+            <tr>
+                <th>Pause Time</th>
+                <td>{{ enterWorklogCtrl.getOfficeTime() - enterWorklogCtrl.getLoggedTime() | toHoursAndMinutes }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,11 @@
+<div class="modal" tabindex="-1" role="dialog" aria-hidden="true" ng-class="{'modal-backdrop': showShadow}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" ng-show="loadingTitle">
+                <h4 class="modal-title" ng-bind="loadingTitle"></h4>
+            </div>
+            <div class="modal-body">{{loadingContent}} {{loadingPercentage ? ' ('+loadingPercentage + '%)' : ''}}</div>
+            <div class="modal-loading-icon"><i class="fa fa-2x fa-circle-o-notch fa-spin"></i></div>
+        </div>
+    </div>
+</div>
