@@ -31,10 +31,10 @@
         vm.getSuggestions = getSuggestions;
         vm.selectedObject = selectedObject;
         vm.inputChanged = inputChanged;
-        vm.jiraURL = 'http://jira.tierconnect.com';
+        vm.jiraURL = 'REPLACEWITHJIRA';
 
-        vm.username = 'mmayori';
-        vm.password = 'M1@y0r!2015';
+        vm.username = 'YOURUSERNAMEINJIRA';
+        vm.password = 'YOUPASSWORDINJIRA';
         vm.date = new Date();
         var loadedDate = new Date();
         vm.logged = false;
